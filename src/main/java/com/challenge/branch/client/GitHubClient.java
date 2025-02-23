@@ -1,8 +1,7 @@
 package com.challenge.branch.client;
 
-import com.challenge.branch.domain.GitHubReposResponse;
+import com.challenge.branch.domain.GitHubRepoResponse;
 import com.challenge.branch.domain.GitHubUserDetailsResponse;
-import com.challenge.branch.domain.ToDeleteArrayPracticeGetResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -18,14 +17,12 @@ public class GitHubClient {
 
     WebClient webClient = WebClient.create();
 
-    // TODO delete this test method
-    public ToDeleteArrayPracticeGetResponse practiceGet() {
-        return webClient.get()
-                .uri("https://collectionapi.metmuseum.org/public/collection/v1/departments")
-                .retrieve()
-                .bodyToMono(ToDeleteArrayPracticeGetResponse.class)
-                .block();
-    }
+    /**
+     * Call the GitHub API and gather the user details if present.
+     *
+     * @param gitHubUserName Name of the user whose GitHub profile data is being gathered.
+     * @return GitHubUserDetailsResponse: Response from the GitHub user's profile. Maps only the fields needed from the GitHub response.
+     */
     public GitHubUserDetailsResponse getGitHubUserDetails(String gitHubUserName) {
         return webClient.get()
                 .uri(getGitHubUserUrl(gitHubUserName))
@@ -34,11 +31,17 @@ public class GitHubClient {
                 .block();
     }
 
-    public GitHubReposResponse[] getGitHubRepos(String gitHubUserName) {
+    /**
+     * Call the GitHub API and gather the user's associated repositories' details
+     *
+     * @param gitHubUserName Name of the user whose repositories' data is being gathered. Maps only the fields needed from the GitHub response.
+     * @return GitHubRepoResponse[]: Array of GitHubRepoResponses
+     */
+    public GitHubRepoResponse[] getGitHubRepos(String gitHubUserName) {
         return webClient.get()
                 .uri(getGitHubReposUrl(gitHubUserName))
                 .retrieve()
-                .bodyToMono(GitHubReposResponse[].class)
+                .bodyToMono(GitHubRepoResponse[].class)
                 .block();
     }
 
@@ -56,8 +59,6 @@ public class GitHubClient {
         } catch (MalformedURLException ex) {
             System.out.println(ex.getMessage());
         }
-        System.out.println("Url should be -> https://api.github.com/users/octocat");  // todo delete log
-        System.out.println("Url is -> " + gitHubUserUrl);  // todo delete log
         return gitHubUserUrl;
     }
 
@@ -76,8 +77,6 @@ public class GitHubClient {
         } catch (MalformedURLException ex) {
             System.out.println(ex.getMessage());
         }
-        System.out.println("Url should be -> https://api.github.com/users/octocat/repos");  // todo delete log
-        System.out.println("Url is -> " + gitHubReposUrl);  // todo delete log
         return gitHubReposUrl;
     }
 

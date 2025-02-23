@@ -30,11 +30,7 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 	testCompileOnly("org.projectlombok:lombok")
 	testAnnotationProcessor("org.projectlombok:lombok")
-//	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
-//tasks.withType(Test).configureEach {
-//	useJUnitPlatform()
-//}
 
 tasks.named('test') {
 	useJUnitPlatform()

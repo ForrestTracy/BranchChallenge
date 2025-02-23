@@ -5,7 +5,7 @@ import lombok.Data;
 import java.net.URI;
 
 @Data
-public class GitHubReposResponse {
+public class GitHubRepoResponse {
 
     private URI html_url;
     private String name;

@@ -8,6 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class GitHubUserResponseToGitHubUserConverter implements Converter<GitHubUserDetailsResponse, GitHubUserDetails> {
 
+    /**
+     * Convert the response from the GitHub user profile data gathered to the needed GitHubUserDetails Object.
+     *
+     * @param gitHubUserDetailsResponse the source object to convert gathered from GitHub
+     * @return GitHubUserDetails: The data formatted as needed to provide to the calling agent.
+     */
     @Override
     public GitHubUserDetails convert(GitHubUserDetailsResponse gitHubUserDetailsResponse) {
         return GitHubUserDetails.builder()
