@@ -42,7 +42,7 @@ public class CacheService {
     private final GitHubUserDetails OCTO_GIT_USER_DETAILS = GitHubUserDetails.builder()
             .user_name("octocat")
             .display_name("The Octocat")
-            .avatar("https://avatars3.githubusercontent.com/u/583231?v=4")
+            .avatar(URI.create("https://avatars3.githubusercontent.com/u/583231?v=4"))
             .geo_location("San Francisco")
             .email(null)
             .url(URI.create("https://github.com/octocat"))

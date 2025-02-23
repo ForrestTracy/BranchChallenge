@@ -1,6 +1,6 @@
 package com.challenge.branch.client;
 
-import com.challenge.branch.domain.GitHubReposArrayResponse;
+import com.challenge.branch.domain.GitHubReposResponse;
 import com.challenge.branch.domain.GitHubUserDetailsResponse;
 import com.challenge.branch.domain.ToDeleteArrayPracticeGetResponse;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +18,7 @@ public class GitHubClient {
 
     WebClient webClient = WebClient.create();
 
-    // practice URL : https://collectionapi.metmuseum.org/public/collection/v1/departments
+    // TODO delete this test method
     public ToDeleteArrayPracticeGetResponse practiceGet() {
         return webClient.get()
                 .uri("https://collectionapi.metmuseum.org/public/collection/v1/departments")
@@ -34,12 +34,11 @@ public class GitHubClient {
                 .block();
     }
 
-    public GitHubReposArrayResponse getGitHubRepos(String gitHubUserName) {
+    public GitHubReposResponse[] getGitHubRepos(String gitHubUserName) {
         return webClient.get()
                 .uri(getGitHubReposUrl(gitHubUserName))
-//                .body(Mono.just(employee), Employee.class) // todo clean up if needed
                 .retrieve()
-                .bodyToMono(GitHubReposArrayResponse.class)
+                .bodyToMono(GitHubReposResponse[].class)
                 .block();
     }
 

@@ -14,7 +14,9 @@ public class GitHubDataController {
     private final GitHubDataService gitHubDataService;
 
     @GetMapping("/{gitHubUserName}")
-    public GitHubUserDetails gitHubUserDetails(@PathVariable String gitHubUserName, @RequestParam("useOnlyCache") Boolean useOnlyCache) {
+    public GitHubUserDetails gitHubUserDetails(
+            @PathVariable String gitHubUserName,
+            @RequestParam(value = "useOnlyCache", required = false, defaultValue = "false") Boolean useOnlyCache) {
         return gitHubDataService.getGitHubUserDetails(gitHubUserName, useOnlyCache);
     }
 
