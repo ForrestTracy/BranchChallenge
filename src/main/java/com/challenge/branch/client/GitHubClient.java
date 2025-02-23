@@ -2,12 +2,15 @@ package com.challenge.branch.client;
 
 import com.challenge.branch.domain.GitHubReposArrayResponse;
 import com.challenge.branch.domain.GitHubUserDetailsResponse;
+import com.challenge.branch.domain.ToDeleteArrayPracticeGetResponse;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.MalformedURLException;
 
+@Service
 public class GitHubClient {
 
     @Value("${gitHubBaseUrl}")
@@ -15,6 +18,14 @@ public class GitHubClient {
 
     WebClient webClient = WebClient.create();
 
+    // practice URL : https://collectionapi.metmuseum.org/public/collection/v1/departments
+    public ToDeleteArrayPracticeGetResponse practiceGet() {
+        return webClient.get()
+                .uri("https://collectionapi.metmuseum.org/public/collection/v1/departments")
+                .retrieve()
+                .bodyToMono(ToDeleteArrayPracticeGetResponse.class)
+                .block();
+    }
     public GitHubUserDetailsResponse getGitHubUserDetails(String gitHubUserName) {
         return webClient.get()
                 .uri(getGitHubUserUrl(gitHubUserName))

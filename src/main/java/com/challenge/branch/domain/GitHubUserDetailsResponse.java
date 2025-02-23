@@ -1,15 +1,19 @@
 package com.challenge.branch.domain;
 
+import lombok.Data;
+
+import java.net.URI;
 import java.util.Date;
 
+@Data
 public class GitHubUserDetailsResponse {
 
-    private String login; // maps to GitHubUserDetails.user_name
-    private String name; // maps to GitHubUserDetails.display_name
-    private String avatar_url; // maps to GitHubUserDetails.avatar
-    private String location; // maps to GitHubUserDetails.geo_location
-    private String email; // maps to GitHubUserDetails.email
-    private String html_url; // maps to GitHubUserDetails.url
-    private Date created_at; // maps to GitHubUserDetails.created_at
+    private URI avatar_url;
+    private Date created_at;
+    private String email;
+    private URI html_url;
+    private String location;
+    private String login;
+    private String name;
 
 }

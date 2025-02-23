@@ -13,13 +13,13 @@ import java.util.Set;
 @AllArgsConstructor
 public class GitHubUserDetails {
 
-    private String user_name;
-    private String display_name;
-    private String avatar;
-    private String geo_location;
-    private String email;
-    private URI url;
+    private URI avatar;
     private Date created_at;
+    private String display_name;
+    private String email;
+    private String geo_location;
     private Set<GitHubRepo> repos;
+    private URI url;
+    private String user_name;
 
 }
