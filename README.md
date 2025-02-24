@@ -23,10 +23,15 @@ Octocat Profile Endpoint: [HERE](https://api.github.com/users/octocat)
 
 Octocat Repos Endpoint:   [HERE](https://api.github.com/users/octocat/repos)
 
+# Architecture Decisions
+I went with a very straightforward Controller -> Service -> Client architecture. There was very little logic necessary, so no
+other complexity was needed other than the Converters. The Converters were leveraged at the service layer to ensure
+proper mapping of the GitHub responses back to the desired Object structure requested by the client. The Services and 
+Converters were most complex, therefore, they demanded the bulk of the unit testing.
 
 # Expansions I'd make if this was intended for full PROD activity
-
 1. Implement a true cache.
 2. Create a GitHub account to get an access token to allow higher rates of use.
 3. Use access token to gather data about repos with non-public scope access.
 4. Add an Open API ("Swagger") page for reference.
+5. Expand unit testing coverage around the Webclient and more error responses.
